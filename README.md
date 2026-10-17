@@ -113,3 +113,24 @@ A automação cobre Chromium. A validação final em Safari/iOS e no aparelho re
 Não há analytics, pixel, formulário, cookies publicitários ou scripts externos. Os contatos externos só abrem por ação do visitante. O aviso em `/privacidade` deve ser revisto caso novos serviços sejam adicionados.
 
 Nenhuma implantação pública, compra de serviço ou envio ao GitHub é realizado pelos comandos de desenvolvimento. Publicar é uma etapa separada que exige autorização do responsável.
+
+## Publicação no GitHub Pages
+
+A versão de publicação é estática e mantém o desenvolvimento normal em Next.js:
+
+```sh
+npm ci
+npm run build:pages
+```
+
+O script gera `out/`, com `.nojekyll`, caminhos de mídia prefixados e imagens WebP locais, sem depender do servidor de otimização de imagens. Os vídeos permanecem idênticos aos originais. A imagem social é exportada como PNG com extensão, compatível com hospedagem estática.
+
+O workflow `.github/workflows/pages.yml` publica a branch `main` usando as ações oficiais do GitHub. No repositório, em **Settings → Pages → Build and deployment → Source**, selecione **GitHub Actions**. Depois de habilitar, os próximos pushes para `main` publicam automaticamente. Se a execução inicial tiver ocorrido antes da ativação, abra **Actions → Publish trainer website → Run workflow** para publicar novamente. Nenhum token pessoal precisa ser colocado no código.
+
+Endereço previsto deste projeto: `https://otaviorezende-site.github.io/personal-trainer-premium-base/`. O endereço só fica disponível depois de uma publicação bem-sucedida no Pages. Repositórios privados podem ter restrições de plano; o projeto não altera a visibilidade do repositório nem contrata serviços.
+
+Para outro repositório, o script usa `GITHUB_REPOSITORY` no formato `dono/repositorio` quando fornecido pelo Actions. `NEXT_PUBLIC_BASE_PATH` e `NEXT_PUBLIC_SITE_URL` permitem domínio ou subpasta personalizados. Esses valores públicos são definidos no build. O perfil permanece em modo demonstrativo e com `noindex` durante a prévia.
+
+Após um build de Pages, rode `npm run build` novamente antes de usar `npm run start`, pois `next start` exige o build de servidor. Para desenvolvimento, `npm run dev` continua disponível.
+
+Para verificar o pacote estático antes do envio, rode `npm run test:pages` após `npm run build:pages`. Essa verificação inicia um servidor local temporário na subpasta real do projeto e exercita desktop, celular e tablet em ambas as orientações, incluindo vídeos, imagens, contato, abas e recarregamento da rota de privacidade. Não publica nem abre um túnel.

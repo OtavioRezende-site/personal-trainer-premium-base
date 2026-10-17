@@ -134,7 +134,7 @@ test("SEO, privacy and genuine-data safeguards", async ({page, request})=>{
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain("Disallow: /");
   expect((await request.get("/sitemap.xml")).status()).toBe(200);
-  expect((await request.get("/opengraph-image")).headers()["content-type"]).toContain("image/png");
+  expect((await request.get("/opengraph-image.png")).headers()["content-type"]).toContain("image/png");
   await page.getByRole("link",{name:"Privacidade",exact:true}).click();
   await expect(page.getByRole("heading",{level:1})).toContainText("SUA PRIVACIDADE");
 });

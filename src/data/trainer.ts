@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/paths";
+
 export type VerifiedText = { text: string; verified: boolean };
 export type TrainerService = {
   id: string; title: string; subtitle: string; description: string;
@@ -51,13 +53,13 @@ export const trainer: TrainerConfig = {
     headline: ["SEU CORPO.", "SEU PRÓXIMO", "NÍVEL."], highlightLine: 2,
     description: "Mais do que treinar. Construir uma versão mais forte de você, no seu ritmo e com direção.",
     primaryCta: "Começar minha evolução", secondaryCta: "Conheça o método",
-    desktopVideo: "/videos/hero-desktop.mp4", mobileVideo: "/videos/hero-mobile.mp4",
-    desktopPoster: "/images/hero-desktop.webp", mobilePoster: "/images/hero-mobile.webp",
-    desktopPosterSmall: "/images/hero-desktop-small.webp", mobilePosterSmall: "/images/hero-mobile-small.webp",
+    desktopVideo: assetPath("/videos/hero-desktop.mp4"), mobileVideo: assetPath("/videos/hero-mobile.mp4"),
+    desktopPoster: assetPath("/images/hero-desktop.webp"), mobilePoster: assetPath("/images/hero-mobile.webp"),
+    desktopPosterSmall: assetPath("/images/hero-desktop-small.webp"), mobilePosterSmall: assetPath("/images/hero-mobile-small.webp"),
     desktopPosition: "65% center", mobilePosition: "50% 35%", tabletLandscapePosition: "50% center", tabletPortraitPosition: "50% 55%",
   },
   profile: {
-    image: "/images/trainer-demo.webp", imageAlt: "Cena ilustrativa de um treinador em uma academia",
+    image: assetPath("/images/trainer-demo.webp"), imageAlt: "Cena ilustrativa de um treinador em uma academia",
     imagePosition: "50% 38%", imageCaption: "Imagem ilustrativa · mídia de demonstração",
     eyebrow: "MUITO PRAZER, CAIO",
     headline: ["TREINAR É HUMANO.", "O PLANO TAMBÉM", "PRECISA SER."],
@@ -84,21 +86,21 @@ export const trainer: TrainerConfig = {
       id: "presencial", title: "PRESENÇA QUE\nFAZ DIFERENÇA.", subtitle: "Personal presencial",
       description: "Orientação próxima, atenção à execução e um treino que acompanha o seu momento. Movimento a movimento.",
       details: ["Acompanhamento durante o treino", "Atenção à execução dos movimentos", "Planejamento individual"],
-      image: "/images/training-demo.webp", imageAlt: "Cena ilustrativa de orientação durante um exercício com kettlebell",
+      image: assetPath("/images/training-demo.webp"), imageAlt: "Cena ilustrativa de orientação durante um exercício com kettlebell",
       enabled: true, verified: false,
     },
     {
       id: "online", title: "SEU TREINO.\nONDE VOCÊ ESTIVER.", subtitle: "Acompanhamento online",
       description: "Uma proposta de orientação a distância, com planejamento pensado para os recursos e a rotina de cada pessoa.",
       details: ["Orientação a distância", "Treinos adaptados à sua estrutura", "Ajustes de planejamento"],
-      image: "/images/online-demo.webp", imageAlt: "Cena ilustrativa de preparação do equipamento de musculação",
+      image: assetPath("/images/online-demo.webp"), imageAlt: "Cena ilustrativa de preparação do equipamento de musculação",
       enabled: true, verified: false,
     },
     {
       id: "programa", title: "DIREÇÃO PARA\nO SEU MOVIMENTO.", subtitle: "Programa individualizado",
       description: "Uma estrutura de treino com propósito: exercícios, organização e progressão pensados para o seu ponto de partida.",
       details: ["Plano de exercícios individual", "Organização da rotina de treino", "Progressão conforme avaliação"],
-      image: "/images/progress-demo.webp", imageAlt: "Cena ilustrativa de treino com cordas na academia",
+      image: assetPath("/images/progress-demo.webp"), imageAlt: "Cena ilustrativa de treino com cordas na academia",
       enabled: true, verified: false,
     },
   ],
@@ -116,9 +118,9 @@ export const trainer: TrainerConfig = {
     { title: "Evolução acompanhada", description: "Observar, conversar e ajustar. O plano acompanha o seu momento." },
   ],
   gallery: [
-    { image: "/images/gallery-guidance.webp", alt: "Cena ilustrativa de treinador orientando a execução de um exercício", label: "INTENÇÃO EM CADA MOVIMENTO", position: "60% center", approved: false },
-    { image: "/images/gallery-focus.webp", alt: "Cena ilustrativa de ajuste de carga em equipamento de academia", label: "ATENÇÃO AOS DETALHES", position: "55% center", approved: false },
-    { image: "/images/gallery-energy.webp", alt: "Cena ilustrativa de exercício com cordas e orientação de treinador", label: "PRESENÇA NO PROCESSO", position: "60% center", approved: false },
+    { image: assetPath("/images/gallery-guidance.webp"), alt: "Cena ilustrativa de treinador orientando a execução de um exercício", label: "INTENÇÃO EM CADA MOVIMENTO", position: "60% center", approved: false },
+    { image: assetPath("/images/gallery-focus.webp"), alt: "Cena ilustrativa de ajuste de carga em equipamento de academia", label: "ATENÇÃO AOS DETALHES", position: "55% center", approved: false },
+    { image: assetPath("/images/gallery-energy.webp"), alt: "Cena ilustrativa de exercício com cordas e orientação de treinador", label: "PRESENÇA NO PROCESSO", position: "60% center", approved: false },
   ],
   testimonials: [], serviceAreas: [],
   contact: {
@@ -142,7 +144,7 @@ export const trainer: TrainerConfig = {
   seo: {
     title: "Caio Almeida | Treino com propósito — Demonstração",
     description: "Uma experiência de treino centrada em você. Conheça este modelo demonstrativo de personal trainer, com planejamento individual e movimento com propósito.",
-    siteUrl: null, locale: "pt_BR",
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || null, locale: "pt_BR",
   },
   sections: {
     about: true, personalized: true, services: true, methodology: true,
